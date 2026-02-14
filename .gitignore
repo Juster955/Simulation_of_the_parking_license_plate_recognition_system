@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,opencv
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,opencv
 
+
+### 我自己手动加的 ###
+备忘录.txt
+
+
 ### OpenCV ###
 #OpenCV for Mac and Linux
 #build and release folders
