@@ -1,0 +1,2 @@
+# 设置文本文件的行尾为 LF
+*.txt text eol=lf
