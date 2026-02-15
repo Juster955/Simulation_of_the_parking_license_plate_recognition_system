@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车牌识别系统 - 实时监控</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/" class="active">实时监控</a>
+        <a href="/manage">车牌管理</a>
+    </div>
+    <div class="container">
+        <h1>实时监控</h1>
+        <div class="result-card" id="result-card">
+            <div class="result-plate" id="plate">--</div>
+            <div class="result-confidence" id="confidence">置信度: --</div>
+            <div class="result-status" id="status"></div>
+        </div>
+        <h2>最近识别记录</h2>
+        <table id="recent-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>车牌号</th>
+                    <th>置信度</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody id="recent-body">
+                <tr><td colspan="4">暂无记录</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 轮询最新识别结果
+        async function fetchLatest() {
+            try {
+                const response = await fetch('/api/latest');
+                const data = await response.json();
+                if (data.plate) {
+                    document.getElementById('plate').innerText = data.plate;
+                    document.getElementById('confidence').innerText = `置信度: ${data.confidence}`;
+                    const statusEl = document.getElementById('status');
+                    statusEl.innerText = data.allowed ? '允许通行' : '禁止通行';
+                    statusEl.className = data.allowed ? 'status-allowed' : 'status-denied';
+                } else {
+                    document.getElementById('plate').innerText = '--';
+                    document.getElementById('confidence').innerText = '置信度: --';
+                    document.getElementById('status').innerText = '';
+                }
+            } catch (error) {
+                console.error('获取最新结果失败:', error);
+            }
+        }
+
+        // 轮询最近记录
+        async function fetchRecent() {
+            try {
+                const response = await fetch('/api/recent');
+                const records = await response.json();
+                const tbody = document.getElementById('recent-body');
+                if (records.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4">暂无记录</td></tr>';
+                } else {
+                    tbody.innerHTML = records.map(r => `
+                        <tr>
+                            <td>${r.time}</td>
+                            <td>${r.plate}</td>
+                            <td>${r.confidence}</td>
+                            <td><span class="status-badge ${r.allowed ? 'status-allowed' : 'status-denied'}">${r.allowed ? '允许' : '禁止'}</span></td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('获取最近记录失败:', error);
+            }
+        }
+
+        // 初始加载
+        fetchLatest();
+        fetchRecent();
+        // 每2秒轮询一次
+        setInterval(fetchLatest, 2000);
+        setInterval(fetchRecent, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# 树莓派端依赖
+ultralytics==8.0.0          # YOLOv8 官方库
+opencv-python==4.8.1.78     # 图像处理
+numpy==1.24.3               # 数值计算
+requests==2.31.0            # HTTP 上传
+picamera2==0.3.12            # 树莓派官方摄像头库（如果用CSI摄像头）

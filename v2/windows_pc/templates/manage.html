@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车牌识别系统 - 车牌管理</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">实时监控</a>
+        <a href="/manage" class="active">车牌管理</a>
+    </div>
+    <div class="container">
+        <h1>车牌管理</h1>
+        <div class="form-container">
+            <h2>添加新车牌</h2>
+            <form id="add-form">
+                <div class="form-group">
+                    <label for="plate">车牌号</label>
+                    <input type="text" id="plate" name="plate" required placeholder="例如 京A12345">
+                </div>
+                <div class="form-group">
+                    <label for="note">备注（可选）</label>
+                    <input type="text" id="note" name="note" placeholder="车主姓名等">
+                </div>
+                <button type="submit" class="btn btn-success">添加</button>
+            </form>
+        </div>
+
+        <h2>现有白名单</h2>
+        <table id="vehicle-table">
+            <thead>
+                <tr>
+                    <th>车牌号</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 动态填充 -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

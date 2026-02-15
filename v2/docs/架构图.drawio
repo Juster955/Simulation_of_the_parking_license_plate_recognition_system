@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2025-02-15T12:00:00.000Z" agent="Mozilla/5.0" version="14.6.13" etag="xxx" type="device">
+  <diagram id="xxx" name="第1页">
+    <mxGraphModel dx="1000" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- 树莓派 -->
+        <mxCell id="2" value="树莓派 (摄像头端)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="200" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="1. 拍摄画面<br>2. YOLOv8n 检测车牌<br>3. 裁剪车牌区域<br>4. HTTP上传图片" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="70" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <!-- 门卫电脑 -->
+        <mxCell id="4" value="门卫电脑 (Windows)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="200" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="Flask后端<br>① /api/recognize 接收图片<br>② EasyOCR识别字符<br>③ 查询SQLite数据库<br>④ 返回JSON结果<br>⑤ 记录最近识别记录<br><br>前端页面 (浏览器)<br>- 实时监控 (index.html)<br>- 车牌管理 (manage.html)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="70" width="180" height="160" as="geometry"/>
+        </mxCell>
+        <!-- STM32 -->
+        <mxCell id="6" value="STM32 (闸机控制)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="600" y="40" width="200" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="串口接收指令<br>舵机控制道闸<br>红外检测车辆通过<br>状态反馈" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="610" y="70" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <!-- 连接线 -->
+        <mxCell id="8" value="HTTP上传图片" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="2" target="4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="140" y="160" as="sourcePoint"/>
+            <mxPoint x="320" y="140" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" value="串口指令" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="4" target="6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="140" as="sourcePoint"/>
+            <mxPoint x="600" y="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" value="浏览器访问" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;dashed=1;strokeColor=#000000;" edge="1" parent="1" source="4" target="4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="240" as="sourcePoint"/>
+            <mxPoint x="420" y="280" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
