@@ -4,6 +4,7 @@
 
 ### 一些说明
 windows小伙伴们注意了：如果不出意外的话，本项目所有的换行都是LF，而非windows默认的CRLF  
+[对应的博客在这里](https://juster955.github.io/2026/02/16/%E5%B0%9D%E8%AF%95%E5%AF%B9%E5%B0%8F%E5%8C%BA%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A8%A1%E6%8B%9F/#more)  
 
 ### 关于如何测试
 本项目分为两个版本：v1和v2  
